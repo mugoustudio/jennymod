@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenny Mod - Forge 1.12.2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+        :root {
+            --primary-color: #ff69b4;
+            --secondary-color: #9400d3;
+        }
+        body {
+            background: #0f0f0f;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+        .neon-btn {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            padding: 12px 24px;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .neon-btn:hover {
+            box-shadow: 0 0 15px var(--primary-color);
+            transform: translateY(-2px);
+        }
+        .download-section {
+            text-align: center;
+            padding: 60px 20px;
+            margin: auto;
+            max-width: 600px;
+        }
+        .version-info {
+            color: #ff69b4;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="neon-btn" onclick="changeLanguage('zh-CN')">简体中文</button>
+        <button class="neon-btn" onclick="changeLanguage('zh-TW')">繁體中文</button>
+        <button class="neon-btn" onclick="changeLanguage('en')">English</button>
+    </div>
+
+    <section class="download-section">
+        <h1 data-i18n="title">Jenny Mod</h1>
+        <div class="version-info">Forge 1.12.2</div>
+        <button class="neon-btn" onclick="startDownload()" data-i18n="download_button">Get Fucking Now</button>
+    </section>
+
+    <script>
+        const translations = {
+            'zh-CN': {
+                title: "Jenny Mod",
+                download_button: "点击开操"
+            },
+            'zh-TW': {
+                title: "Jenny Mod",
+                download_button: "點擊開搞"
+            },
+            'en': {
+                title: "Jenny Mod",
+                download_button: "Get Fucking Now"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                element.textContent = translations[lang][key];
+            });
+        }
+
+        function startDownload() {
+            const link = `https://github.com/mugoustudio/jennymod/releases/download/v1.1.0/jennymod.v1.1.0.jar?t=${Date.now()}`;
+            const a = document.createElement('a');
+            a.href = link;
+            a.download = true;
+            a.click();
+        }
+    </script>
+</body>
+</html>
